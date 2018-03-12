@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Golfer {
 	private String fName, lName;
 	private ArrayList<Integer> golferScores;
+	private int careerAverage,teamRanking;
 	
 	public Golfer(String fName, String lName) {
 		this.fName = fName;
