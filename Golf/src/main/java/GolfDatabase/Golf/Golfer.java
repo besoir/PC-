@@ -16,4 +16,20 @@ public class Golfer {
 		int addThis = Integer.parseInt(scoreToAdd);
 		golferScores.add(addThis);
 	}
+	
+	public String getFirstName() {
+		return fName;
+	}
+	
+	public String getLastName() {
+		return lName;
+	}
+	
+	public String getFullName() {
+		return fName + " " + lName;
+	}
+	@Override
+	public String toString() {
+		return this.fName + " " + lName + " " + golferScores.get(0);
+	}
 }
