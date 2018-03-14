@@ -26,6 +26,9 @@ public class Golfer {
 	public void setTeam(String tema) {
 		this.team = tema;
 	}
+	public String getTeam() {
+		return team;
+	}
 	public String getFirstName() {
 		return fName;
 	}
