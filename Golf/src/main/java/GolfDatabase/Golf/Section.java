@@ -17,7 +17,7 @@ public class Section {
 		teams = new HashMap<String,Team>();
 	}
 	
-	public void createTeamsFromPdf() throws IOException {
+	public void createTeamsFromPdf() throws IOException { // our intial load
 		ArrayList<Golfer> golfers = new ArrayList<Golfer>();
 		PDDocument document = null;
 		document = PDDocument.load( new File("scores") );
@@ -83,7 +83,7 @@ public class Section {
 			}
 	}
 
-public void printMap() {
+public void printMap() { //print all players
 	Iterator<Team> ait = teams.values().iterator();
 	while(ait.hasNext()) {
 		Team tmp = ait.next();
@@ -91,6 +91,14 @@ public void printMap() {
 	}
 	
 }
+
+public void printAllTeams() {
+	Iterator<String> ait = teams.keySet().iterator();
+	while(ait.hasNext()) {
+		String teamName = ait.next();
+		System.out.println("A section 5 team: "+teamName);
+	}
+	}
 
 }
 

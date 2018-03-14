@@ -100,6 +100,7 @@ public class Team {
 public void addPlayer(Golfer player) {
 	if(!golferList.contains(player))
 	golferList.add(player);
+	
 }
 		
 public int teamSize() {
@@ -114,4 +115,14 @@ public int teamSize() {
 		for(Golfer g:golferList)
 			System.out.println(g);
 	}}
-}
+	public void removePlayer(String playerToBeRemoved) {
+		if(golferList.size() >=1) {
+			for(int i=0; i<golferList.size();i++) {
+				if(golferList.get(i).getFullName().equalsIgnoreCase(playerToBeRemoved))
+					golferList.remove(i);
+				
+			}
+		}
+		
+	}
+	}
