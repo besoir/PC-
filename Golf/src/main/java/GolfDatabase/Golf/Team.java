@@ -60,10 +60,12 @@ public class Team {
         String lines[] = output.split("\\n");
         String regexName = "(^\\s+[a-zA-Z]+\\s+[a-zA-Z]+)"; //players name
         String regexSchool = "\\((.*?)\\)"; //schoolName
-
+       
+        
         Golfer atmp = new Golfer("place","holder");
         int count = 0; //since lines is an array so the even numbers refer to scores and 	
-
+        
+        
         for(String line : lines) {
         line = line.replaceAll(regrexNumber, "");	
         	int tmp = count%2;
@@ -91,29 +93,35 @@ public class Team {
             			atmp.setTeam(school.group(1));
             			
             		}
+            		
+        			
         			break;
         		default: break;	}
         		count++;}
+       
+        
+        
         document.close();
+        
     }
     
+<<<<<<< HEAD
 public void addPlayer(Golfer player) {
 	if(!golferList.contains(player))
 	golferList.add(player);
 	
 }
+=======
+
+>>>>>>> 07dbe30d9db45ab31e7bf3c2154fec7c2f9faf17
 		
-public int teamSize() {
-	return golferList.size();
-}
-	public String getTeamName() {
-		return teamName;
-	}
+
+	
 	
 	public void printAll() {
-		if(golferList.size() >=1) {
 		for(Golfer g:golferList)
 			System.out.println(g);
+<<<<<<< HEAD
 	}}
 	public void removePlayer(String playerToBeRemoved) {
 		if(golferList.size() >=1) {
@@ -126,3 +134,7 @@ public int teamSize() {
 		
 	}
 	}
+=======
+	}
+}
+>>>>>>> 07dbe30d9db45ab31e7bf3c2154fec7c2f9faf17
