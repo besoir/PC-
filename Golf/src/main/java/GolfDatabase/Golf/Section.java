@@ -23,7 +23,7 @@ public class Section implements java.io.Serializable  {
 		document = PDDocument.load( new File("scores.pdf") );
         
 		PDFTextStripper stripper = new PDFTextStripper();
-		document = PDDocument.load( new File("scores") );
+		//document = PDDocument.load( new File("scores") );
         stripper.setSortByPosition( true );
         stripper.setStartPage( 0 );
         stripper.setEndPage( document.getNumberOfPages() );
@@ -44,7 +44,8 @@ public class Section implements java.io.Serializable  {
         			case 0: // scores
         				String[] score = line.split(" ");	
         				System.out.println(score[score.length-1]+" players score");
-        				if(score[score.length-1].equals("Scores")) {break;}
+        				if(score[score.length-1].equals("Scores")) 
+        					break;
         				placeHolder.addScore(score[score.length-1]);
         				break;
         			case 1: // names
@@ -68,9 +69,9 @@ public class Section implements java.io.Serializable  {
         					placeHolder = new Golfer("temp","value");
         				}
 
-        			break;
+        				break;
         			default: 
-        			break;	
+        				break;	
         			}
         		count++;
         }
@@ -108,5 +109,10 @@ public class Section implements java.io.Serializable  {
 		if(teams.containsKey(teamName)) {
 			teams.get(teamName).addPlayer(gf);
 		}
+	}
+	
+	public void printTeam(String enteredTeamName) {
+		Team teamToPrint = teams.get(enteredTeamName);
+		System.out.println(teamToPrint);
 	}
 }

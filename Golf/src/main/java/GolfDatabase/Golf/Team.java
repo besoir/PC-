@@ -129,4 +129,12 @@ public class Team implements java.io.Serializable {
 			}
 		}
 	}
+	
+	@Override
+	public String toString() {
+		String output = this.teamName + " with players: \n";
+		for(Golfer g:golferList)
+			output = output + g + "\n"; 
+		return output;
+	}
 }

@@ -51,6 +51,7 @@ public class Main {
 		//section5.addPlayer(new Golfer("please","be gentle"),"Webster Thomas");
 		out.writeObject(section5);
 		System.out.println("zz"); 
+		section5.printTeam("Churchville Chili");
 		out.close();
 		file.close();
 	}
