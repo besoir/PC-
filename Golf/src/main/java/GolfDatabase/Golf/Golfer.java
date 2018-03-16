@@ -2,7 +2,7 @@ package GolfDatabase.Golf;
 
 import java.util.ArrayList;
 
-public class Golfer {
+public class Golfer implements java.io.Serializable {
 	private String fName, lName,team;
 	private ArrayList<Integer> golferScores;
 	private int careerAverage,teamRanking;
@@ -42,6 +42,6 @@ public class Golfer {
 	}
 	@Override
 	public String toString() {
-		return this.fName + " " + lName + " " + golferScores.get(0) + " "+this.team;
+		return this.fName + " " + lName + " " +this.team+".";
 	}
 }
