@@ -20,21 +20,21 @@ public class Main {
 		try{
 			in = new ObjectInputStream(new FileInputStream("abcd"));
 			section5 =(Section)in.readObject();
-			System.out.println("inside try");
+			//System.out.println("inside try");
 		} catch(ClassNotFoundException e) {
-			//means we haven't written to the file
+			System.out.println("means we haven't written to the file");
 			section5 = new Section();
-			System.out.println("inside the catch");
+			//System.out.println("inside the catch");
 			section5.createTeamsFromPdf();
 		} catch(InvalidClassException e2) {
-			System.out.println("inside the catch e2");
+			//System.out.println("inside the catch e2");
 			section5 = new Section();
-			System.out.println("inside the catch");
+			//System.out.println("inside the catch");
 			section5.createTeamsFromPdf();
 		} catch(IOException e3) {
-			System.out.println("inside the catch e3");
+			//System.out.println("inside the catch e3");
 			section5 = new Section();
-			System.out.println("inside the catch");
+			//System.out.println("inside the catch");
 			section5.createTeamsFromPdf();
 		}
 		
@@ -42,17 +42,21 @@ public class Main {
 		//t.readFile("scores.txt");
 		//t.testPdfParser();
 		//t.printAll();
-		System.out.println("zz");
+		//System.out.println("zz");
 
 		section5.printMap();
 		FileOutputStream file = new FileOutputStream("abcd");
 		ObjectOutputStream out = new ObjectOutputStream(file);
-		System.out.println("about to add");
-		//section5.addPlayer(new Golfer("please","be gentle"),"Webster Thomas");
+		//System.out.println("about to add");
+		Golfer g = new Golfer("please","be gentle");
+		section5.addPlayer(g,"Webster Thomas");
 		out.writeObject(section5);
-		System.out.println("zz"); 
-		section5.printTeam("Churchville Chili");
+		//System.out.println("zz");
 		out.close();
 		file.close();
+		section5.printTeam("Churchville Chili");
+		section5.printTeam("Webster Thomas");
+		section5.printTeam("Victor");
+		section5.printTeam("Pittsford Sutherland");
 	}
 }

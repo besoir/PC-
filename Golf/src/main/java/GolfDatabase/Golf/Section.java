@@ -19,11 +19,9 @@ public class Section implements java.io.Serializable  {
 	
 	public void createTeamsFromPdf() throws IOException {
 		ArrayList<Golfer> golfers = new ArrayList<Golfer>();
-		PDDocument document = null;
-		document = PDDocument.load( new File("scores.pdf") );
+		PDDocument document = PDDocument.load( new File("scores.pdf") );
         
 		PDFTextStripper stripper = new PDFTextStripper();
-		//document = PDDocument.load( new File("scores") );
         stripper.setSortByPosition( true );
         stripper.setStartPage( 0 );
         stripper.setEndPage( document.getNumberOfPages() );
@@ -108,6 +106,7 @@ public class Section implements java.io.Serializable  {
 	public void addPlayer(Golfer gf , String teamName) {
 		if(teams.containsKey(teamName)) {
 			teams.get(teamName).addPlayer(gf);
+			System.out.println("A player was added");
 		}
 	}
 	
