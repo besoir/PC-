@@ -48,6 +48,11 @@ public class Golfer implements java.io.Serializable {
 	
 	@Override
 	public String toString() {
-		return this.fName + " " + lName + " " +this.team+".";
+		String output = this.fName + " " + lName + " " + this.team;
+		if(!(golferScores.size() == 0))
+			output = output + " with a score of " +  golferScores.get(0) + ".";
+		else 
+			output = output + " has no scores... yet!";
+		return output;
 	}
 }

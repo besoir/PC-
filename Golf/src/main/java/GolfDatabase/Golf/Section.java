@@ -91,15 +91,8 @@ public class Section implements java.io.Serializable  {
 		Iterator<Team> ait = teams.values().iterator();
 		while(ait.hasNext()) {
 			Team tmp = ait.next();
-			System.out.println("the name of team  "+tmp.getTeamName());
-			if(tmp.teamSize() >=1) {
-				if(tmp.getTeamName().equalsIgnoreCase("Pittsford Sutherland")) {
-					System.out.println("we got thge sutherlkan");
-					System.out.println(tmp.teamSize());
-					System.out.println(tmp.getPlayer(tmp.teamSize()-1)+" aaaaaa");
-				}
-			tmp.printAll();
-			}
+			//System.out.println("the name of team  "+tmp.getTeamName());
+			printTeam(tmp.getTeamName());
 		}
 	}
 

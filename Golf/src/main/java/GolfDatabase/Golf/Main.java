@@ -54,9 +54,6 @@ public class Main {
 		//System.out.println("zz");
 		out.close();
 		file.close();
-		section5.printTeam("Churchville Chili");
-		section5.printTeam("Webster Thomas");
-		section5.printTeam("Victor");
-		section5.printTeam("Pittsford Sutherland");
+		section5.printMap();
 	}
 }
