@@ -33,7 +33,7 @@ public class Golfer implements java.io.Serializable {
 	public String getTeam() {
 		return team;
 	}
-	
+
 	public String getFirstName() {
 		return fName;
 	}

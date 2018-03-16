@@ -23,6 +23,7 @@ public class Section implements java.io.Serializable  {
 		document = PDDocument.load( new File("scores.pdf") );
         
 		PDFTextStripper stripper = new PDFTextStripper();
+		document = PDDocument.load( new File("scores") );
         stripper.setSortByPosition( true );
         stripper.setStartPage( 0 );
         stripper.setEndPage( document.getNumberOfPages() );
@@ -76,6 +77,7 @@ public class Section implements java.io.Serializable  {
         document.close();
 		this.createPlayersFromPdf(golfers);	
 	}
+	
 	private void createPlayersFromPdf(ArrayList<Golfer> playersFromPdf) {
 		//will add the players to the team
 		System.out.println(playersFromPdf.size()+ " size of unsorted array");
@@ -108,4 +110,3 @@ public class Section implements java.io.Serializable  {
 		}
 	}
 }
-

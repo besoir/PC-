@@ -117,7 +117,7 @@ public class Team implements java.io.Serializable {
 	public String getPlayer(int ind) {
 		return golferList.get(ind).getFirstName();
 	}
-	
+		
 	public String getTeamName() {
 		return this.teamName;
 	}

@@ -38,27 +38,20 @@ public class Main {
 			section5.createTeamsFromPdf();
 		}
 		
-		//we can add the multiple paths -- check scores for each time ,export a teams scores		
+		// we can add the multiple paths -- check scores for each time ,export a teams scores		
 		//t.readFile("scores.txt");
 		//t.testPdfParser();
 		//t.printAll();
 		System.out.println("zz");
 
-	section5.printMap();
-	FileOutputStream file = new FileOutputStream("abcd");
-	ObjectOutputStream out = new ObjectOutputStream(file);
-	System.out.println("about to add");
-	//section5.addPlayer(new Golfer("please","be gentle"),"Webster Thomas");
-	out.writeObject(section5);
-	System.out.println("zz"); 
-	out.close();
-	file.close();
-	
-	
-
-	
-	
-	
+		section5.printMap();
+		FileOutputStream file = new FileOutputStream("abcd");
+		ObjectOutputStream out = new ObjectOutputStream(file);
+		System.out.println("about to add");
+		//section5.addPlayer(new Golfer("please","be gentle"),"Webster Thomas");
+		out.writeObject(section5);
+		System.out.println("zz"); 
+		out.close();
+		file.close();
 	}
-
 }
