@@ -11,7 +11,7 @@ import java.util.regex.Pattern;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.text.PDFTextStripper;
 
-public class Section {
+public class Section implements java.io.Serializable  {
 	private HashMap<String,Team> teams;
 	public Section() {
 		teams = new HashMap<String,Team>();
@@ -54,10 +54,12 @@ public class Section {
             			System.out.println(names[0]+":"+ names[1]);
             			}
         			while(school.find()) {
-        				placeHolder.setTeam(school.group(1));
+        				String teamName = school.group(1).trim();
+        				System.out.println("aa: "+teamName);
+        				placeHolder.setTeam(teamName);
         				golfers.add(placeHolder);
-            			if(!teams.containsKey(school.group(1))) {
-            			teams.put(school.group(1), new Team(school.group(1)));
+            			if(!teams.containsKey(teamName)) {
+            			teams.put(teamName, new Team(teamName));
             				}
             			placeHolder = new Golfer("temp","value");
             		}
@@ -83,12 +85,27 @@ public class Section {
 			}
 	}
 
-public void printMap() {
+public void printMap() { //prints the players of teams
 	Iterator<Team> ait = teams.values().iterator();
 	while(ait.hasNext()) {
 		Team tmp = ait.next();
-		tmp.printAll();
+		System.out.println("the name of team  "+tmp.getTeamName());
+		if(tmp.teamSize() >=1) {
+			if(tmp.getTeamName().equalsIgnoreCase("Pittsford Sutherland")) {
+				System.out.println("we got thge sutherlkan");
+			System.out.println(tmp.teamSize());
+			System.out.println(tmp.getPlayer(tmp.teamSize()-1)+" aaaaaa");}
+			
+			tmp.printAll();}
 	}
+	
+}
+
+public void addPlayer(Golfer gf , String teamName) {
+		if(teams.containsKey(teamName)) {
+			teams.get(teamName).addPlayer(gf);
+}
+	
 	
 }
 

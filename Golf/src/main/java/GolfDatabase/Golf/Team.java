@@ -12,7 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class Team {
+public class Team implements java.io.Serializable {
 	private String teamName;
 	private ArrayList<Golfer> golferList;
 	
@@ -98,20 +98,26 @@ public class Team {
     }
     
 public void addPlayer(Golfer player) {
-	if(!golferList.contains(player))
+	if(!golferList.contains(player)) {
 	golferList.add(player);
+	System.out.println("so it worked");}
 }
 		
 public int teamSize() {
-	return golferList.size();
+	return this.golferList.size();
+}
+public String getPlayer(int ind) {
+	return golferList.get(ind).getFirstName();
+	
 }
 	public String getTeamName() {
-		return teamName;
+		return this.teamName;
 	}
 	
 	public void printAll() {
-		if(golferList.size() >=1) {
-		for(Golfer g:golferList)
-			System.out.println(g);
+		if(this.golferList.size() >=1) {
+		for(int i=0; i<this.golferList.size();i++) {
+			System.out.println(golferList.get(i));
+		}
 	}}
 }
