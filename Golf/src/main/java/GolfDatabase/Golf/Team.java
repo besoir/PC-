@@ -12,7 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-public class Team {
+public class Team implements java.io.Serializable {
 	private String teamName;
 	private ArrayList<Golfer> golferList;
 	
@@ -60,58 +60,73 @@ public class Team {
         String lines[] = output.split("\\n");
         String regexName = "(^\\s+[a-zA-Z]+\\s+[a-zA-Z]+)"; //players name
         String regexSchool = "\\((.*?)\\)"; //schoolName
-       
-        
+
         Golfer atmp = new Golfer("place","holder");
         int count = 0; //since lines is an array so the even numbers refer to scores and 	
-        
-        
+
         for(String line : lines) {
-        line = line.replaceAll(regrexNumber, "");	
-        	int tmp = count%2;
+        		line = line.replaceAll(regrexNumber, "");	
+        		int tmp = count%2;
+        		
         		switch(tmp) {
-        		case 0: // scores
-        			String[] score = line.split(" ");	
-        			System.out.println(score[score.length-1]+" players score");
-        			if(score[score.length-1].equals("Scores")) {break;}
-        			atmp.addScore(score[score.length-1]);
-        			break;
-        		case 1: // names
-        			Matcher school =  Pattern.compile(regexSchool).matcher(line);
-        			Matcher name = Pattern.compile(regexName).matcher(line);
-        			while(name.find()) {
-            			System.out.println(name.group(0)+"  name?");
-            			String[] names = name.group(0).split("\\s+");
+        			case 0: // scores
+        				String[] score = line.split(" ");	
+        				System.out.println(score[score.length-1]+" players score");
+        				if(score[score.length-1].equals("Scores")) {
+        					break;
+        				}
+        				atmp.addScore(score[score.length-1]);
+        				break;
+        			case 1: // names
+        				Matcher school =  Pattern.compile(regexSchool).matcher(line);
+        				Matcher name = Pattern.compile(regexName).matcher(line);
+        				
+        				while(name.find()) {
+        					System.out.println(name.group(0)+"  name?");
+        					String[] names = name.group(0).split("\\s+");
             			atmp.setFirstName(names[1]);
             			atmp.setLastName(names[2]);
             			this.golferList.add(atmp);
             			atmp = new Golfer("place","holder");	
             			}
-        			while(school.find()) {
-            		
-            			System.out.println(school.group(1)+" school name?");
-            			atmp.setTeam(school.group(1));
-            			
-            		}
-            		
-        			
-        			break;
-        		default: break;	}
-        		count++;}
-       
-        
-        
+        				
+        				while(school.find()) {
+        					System.out.println(school.group(1)+" school name?");
+        					atmp.setTeam(school.group(1));
+        				}
+        				break;
+        			default: 
+        				break;
+        		}
+        		count++;
+        	}
         document.close();
-        
     }
     
-
+	public void addPlayer(Golfer player) {
+		if(!golferList.contains(player)) {
+			golferList.add(player);
+			System.out.println("so it worked");
+		}
+	}
 		
-
+	public int teamSize() {
+		return this.golferList.size();
+	}
 	
+	public String getPlayer(int ind) {
+		return golferList.get(ind).getFirstName();
+	}
+	
+	public String getTeamName() {
+		return this.teamName;
+	}
 	
 	public void printAll() {
-		for(Golfer g:golferList)
-			System.out.println(g);
+		if(this.golferList.size() >=1) {
+			for(int i=0; i<this.golferList.size();i++) {
+			System.out.println(golferList.get(i));
+			}
+		}
 	}
 }
