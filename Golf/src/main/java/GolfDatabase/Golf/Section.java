@@ -39,37 +39,37 @@ public class Section implements java.io.Serializable  {
         		line = line.replaceAll(regrexNumber, "");	
         		int tmp = count%2;
         			switch(tmp) {
-        			case 0: // scores
-        				String[] score = line.split(" ");	
-        				System.out.println(score[score.length-1]+" players score");
-        				if(score[score.length-1].equals("Scores")) 
+        				case 0: // scores
+        					String[] score = line.split(" ");	
+        					System.out.println(score[score.length-1]+" players score");
+        					if(score[score.length-1].equals("Scores")) 
+        						break;
+        					placeHolder.addScore(score[score.length-1]);
         					break;
-        				placeHolder.addScore(score[score.length-1]);
-        				break;
-        			case 1: // names
-        				Matcher school =  Pattern.compile(regexSchool).matcher(line);
-        				Matcher name = Pattern.compile(regexName).matcher(line);
-        				while(name.find()) {
-        					String playerName =name.group(0).trim();
-        					String[] names = playerName.split("\\s+");
-        					placeHolder.setFirstName(names[0]);
-        					placeHolder.setLastName(names[1]);
-        					System.out.println(names[0]+":"+ names[1]);
-            			}
-        				while(school.find()) {
-        					String teamName = school.group(1).trim();
-        					System.out.println("aa: "+teamName);
-        					placeHolder.setTeam(teamName);
-        					golfers.add(placeHolder);
-        					if(!teams.containsKey(teamName)) {
-        						teams.put(teamName, new Team(teamName));
-            				}
-        					placeHolder = new Golfer("temp","value");
-        				}
+        				case 1: // names
+        					Matcher school =  Pattern.compile(regexSchool).matcher(line);
+        					Matcher name = Pattern.compile(regexName).matcher(line);
+        					while(name.find()) {
+        						String playerName =name.group(0).trim();
+        						String[] names = playerName.split("\\s+");
+        						placeHolder.setFirstName(names[0]);
+        						placeHolder.setLastName(names[1]);
+        						System.out.println(names[0]+":"+ names[1]);
+        					}
+        					while(school.find()) {
+        						String teamName = school.group(1).trim();
+        						System.out.println("aa: "+teamName);
+        						placeHolder.setTeam(teamName);
+        						golfers.add(placeHolder);
+        						if(!teams.containsKey(teamName)) {
+        							teams.put(teamName, new Team(teamName));
+        						}
+        						placeHolder = new Golfer("temp","value");
+        					}
 
-        				break;
-        			default: 
-        				break;	
+        					break;
+        				default: 
+        					break;	
         			}
         		count++;
         }

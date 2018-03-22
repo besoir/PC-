@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Golfer implements java.io.Serializable {
 	private String fName, lName,team;
 	private ArrayList<Integer> golferScores;
-	private int careerAverage,teamRanking;
+	private int careerAverage, teamRanking;
 	
 	public Golfer(String fName, String lName) {
 		this.fName = fName;
