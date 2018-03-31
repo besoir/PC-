@@ -106,8 +106,10 @@ public class Team implements java.io.Serializable {
 	public void addPlayer(Golfer player) {
 		if(!golferList.contains(player)) {
 			golferList.add(player);
-			System.out.println("so it worked");
 		}
+	}
+	public ArrayList<Golfer> getAllPlayers(){
+		return this.golferList;
 	}
 		
 	public int teamSize() {

@@ -1,59 +1,45 @@
+
 package GolfDatabase.Golf;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.layout.FlowPane;
+import javafx.stage.Stage;
 
-import java.io.EOFException;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InvalidClassException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-
-public class Main {
-
-	public static void main(String[] args) throws IOException, ClassNotFoundException {
-		Section section5;
-		ObjectInputStream in; 
-		Team t = new Team("Thomas");
-
-		//so the catch and try is the worst way to check if the file has any data on it.
-		// I apologize for it but it is first time messing with serialization.
-		try{
-			in = new ObjectInputStream(new FileInputStream("abcd"));
-			section5 =(Section)in.readObject();
-			//System.out.println("inside try");
-		} catch(ClassNotFoundException e) {
-			System.out.println("means we haven't written to the file");
-			section5 = new Section();
-			//System.out.println("inside the catch");
-			section5.createTeamsFromPdf();
-		} catch(InvalidClassException e2) {
-			//System.out.println("inside the catch e2");
-			section5 = new Section();
-			//System.out.println("inside the catch");
-			section5.createTeamsFromPdf();
-		} catch(IOException e3) {
-			//System.out.println("inside the catch e3");
-			section5 = new Section();
-			//System.out.println("inside the catch");
-			section5.createTeamsFromPdf();
-		}
+/**
+ * Hello world!
+ *
+ */
+public class Main extends Application
+{ public static Section sec2;
+	@Override
+	public void start(Stage stage) throws Exception {
+		// TODO Auto-generated method stub
 		
-		// we can add the multiple paths -- check scores for each time ,export a teams scores		
-		//t.readFile("scores.txt");
-		//t.testPdfParser();
-		//t.printAll();
-		//System.out.println("zz");
-
-		section5.printMap();
-		FileOutputStream file = new FileOutputStream("abcd");
-		ObjectOutputStream out = new ObjectOutputStream(file);
-		//System.out.println("about to add");
-		Golfer g = new Golfer("please","be gentle");
-		section5.addPlayer(g,"Webster Thomas");
-		out.writeObject(section5);
-		//System.out.println("zz");
-		out.close();
-		file.close();
-		section5.printMap();
+		sec2 = new Section();
+		sec2.createTeamsFromPdf();
+	Parent root = FXMLLoader.load(getClass().getResource("/abcd.fxml"));
+    Scene scene = new Scene(root);
+    
+    
+    stage.setScene(scene);
+    stage.show();
 	}
+	
+	
+	
+	
+	
+	
+	public static void main( String[] args )
+    { 
+       // System.out.println( "Hello World!" );
+        launch(args);
+    }
+
+
+	
+
+	
 }
