@@ -1,7 +1,8 @@
 package GolfDatabase.Golf;
 
 
-	/*
+	import java.io.IOException;
+/*
 	 * To change this license header, choose License Headers in Project Properties.
 	 * To change this template file, choose Tools | Templates
 	 * and open the template in the editor.
@@ -10,20 +11,26 @@ package GolfDatabase.Golf;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.ResourceBundle;
-
+import javafx.scene.Parent;
 import javafx.collections.FXCollections;
-	import javafx.collections.ObservableList;
-	import javafx.event.ActionEvent;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-	import javafx.fxml.Initializable;
-	import javafx.scene.control.MenuItem;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Scene;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 	import javafx.scene.control.SplitMenuButton;
 	import javafx.scene.control.TableColumn;
 	import javafx.scene.control.TableView;
 	import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
 
 	public class SampleController implements Initializable {
+		@FXML
+		private MenuBar menuBar;
 	    @FXML
 	    private TableView<Golfer> myTableView; //need to correspond tofxid in gluconm
 	    @FXML
@@ -51,21 +58,19 @@ import javafx.fxml.FXML;
 	    @FXML
 	    private void setOnAction(ActionEvent e){
 	    
-	        System.out.println("hrrrrrr");
+	        System.out.println("The function was associated with the correct element");
 	       }
 	    @FXML
 	    private void test(ActionEvent e){
-	        System.out.println("hey this is a test");;}
+	        System.out.println("The function was associated with the correct element");;}
 //	    @FXML
 	    @FXML
 	    private void test2(ActionEvent e){
-	        System.out.println("heqweqweqwe");
+	        System.out.println("The function was associated with the correct element");
 	        
 	    
 	    }
-	    
-	    
-	    
+	       
 	    public void initialize(URL url, ResourceBundle rb) {
 	        // TODO
 	        //need to modify fxml to allow for dynamic loading of players and team
@@ -102,13 +107,13 @@ import javafx.fxml.FXML;
 	        for (int i = 0; i < 10; i++) {
 	            
 	        
-	    players.add(new MenuItem("adrian"));
+	    players.add(new MenuItem("example of adding menu item"));
 	        }return players;
 	    }
 	    
 	    public void testSb(){
 	    	Main.sec2.printMap();
-	        playersFromSelectedTeam.setText("noobtube");
+	        playersFromSelectedTeam.setText("fight against grenade spam");
 	        
 	    }
 	    
@@ -121,7 +126,7 @@ import javafx.fxml.FXML;
 	    		mu.setOnAction(new EventHandler<ActionEvent>() {
 
 					public void handle(ActionEvent event) {
-					populatePlayerDropDown(event.getSource());
+					populatePlayerDropDown(event.getSource()); //WHERE WE FILL THE PLAYER SMB
 					MenuItem mi = (MenuItem)(event.getSource());
 						allTeams.setText(mi.getText());
 					}
@@ -140,12 +145,38 @@ import javafx.fxml.FXML;
 	    ArrayList<Golfer> players=	Main.sec2.getSelectedTeam(mu.getText());
 	    	if(!(players == null)) {
 	    		for(Golfer g: players) {
-	    			people.add(new MenuItem(g.getFirstName()));
+	    			MenuItem mi = new MenuItem(g.getFirstName());
+	    			mi.setOnAction(new EventHandler<ActionEvent>(){
+	    				public void handle(ActionEvent e)  {
+	    					try {
+								changeScene(e);
+							} catch (IOException e1) {
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+	    					
+	    			}});
+	    			people.add(mi);}
+	    			
 	    			
 	    		}
-	    		
-	    		playersFromSelectedTeam.getItems().addAll(people);
+	    		playersFromSelectedTeam.getItems().addAll(people);	
 	    		myTableView.getItems().clear();
 	    		myTableView.getItems().addAll(players);
-	    		}}}
+	    		
+	    	}
+	    public void changeScene(ActionEvent e) throws IOException {
+	    	Parent table2;
+			
+			table2 = FXMLLoader.load(getClass().getResource("/second.fxml"));
+		Scene tableScene = new Scene(table2);
+		 Stage app_stage = (Stage )menuBar.getScene().getWindow();
+		
+		app_stage.setScene(tableScene);
+		app_stage.setTitle("First comment");
+		app_stage.show();
+	    	
+	    	
+	    }
+	    	}
 	    	

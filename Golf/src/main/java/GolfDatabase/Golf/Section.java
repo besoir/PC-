@@ -79,7 +79,6 @@ public class Section implements java.io.Serializable  {
 	
 	private void createPlayersFromPdf(ArrayList<Golfer> playersFromPdf) {
 		//will add the players to the team
-		System.out.println(playersFromPdf.size()+ " size of unsorted array");
 		for(Golfer gf : playersFromPdf) {
 			if(teams.containsKey(gf.getTeam())) {
 				teams.get(gf.getTeam()).addPlayer(gf);
@@ -91,7 +90,6 @@ public class Section implements java.io.Serializable  {
 		Iterator<Team> ait = teams.values().iterator();
 		while(ait.hasNext()) {
 			Team tmp = ait.next();
-			//System.out.println("the name of team  "+tmp.getTeamName());
 			printTeam(tmp.getTeamName());
 		}
 	}
@@ -99,7 +97,6 @@ public class Section implements java.io.Serializable  {
 	public void addPlayer(Golfer gf , String teamName) {
 		if(teams.containsKey(teamName)) {
 			teams.get(teamName).addPlayer(gf);
-			System.out.println("A player was added");
 		}
 	}
 	
@@ -116,6 +113,5 @@ public class Section implements java.io.Serializable  {
 	public void printTeam(String enteredTeamName) {
 		Team teamToPrint = teams.get(enteredTeamName);
 		teamToPrint.teamSize();
-		System.out.println(teamToPrint);
 	}
 }

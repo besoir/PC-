@@ -15,7 +15,7 @@
 
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GolfDatabase.Golf.SampleController">
   <children>
-    <MenuBar VBox.vgrow="NEVER">
+    <MenuBar VBox.vgrow="NEVER" fx:id="menuBar" layoutY="0.0" maxWidth="1.7976931348623157E308" prefWidth="300.0" useSystemMenuBar="false" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="2.0">
       <menus>
         <Menu mnemonicParsing="false" text="File">
           <items>
