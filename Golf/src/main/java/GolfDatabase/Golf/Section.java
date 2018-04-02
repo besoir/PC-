@@ -41,7 +41,7 @@ public class Section implements java.io.Serializable  {
         			switch(tmp) {
         			case 0: // scores
         				String[] score = line.split(" ");	
-        				System.out.println(score[score.length-1]+" players score");
+        				//System.out.println(score[score.length-1]+" players score");
         				if(score[score.length-1].equals("Scores")) 
         					break;
         				placeHolder.addScore(score[score.length-1]);
@@ -54,11 +54,11 @@ public class Section implements java.io.Serializable  {
         					String[] names = playerName.split("\\s+");
         					placeHolder.setFirstName(names[0]);
         					placeHolder.setLastName(names[1]);
-        					System.out.println(names[0]+":"+ names[1]);
+        					//System.out.println(names[0]+":"+ names[1]);
             			}
         				while(school.find()) {
         					String teamName = school.group(1).trim();
-        					System.out.println("aa: "+teamName);
+        					//System.out.println("aa: "+teamName);
         					placeHolder.setTeam(teamName);
         					golfers.add(placeHolder);
         					if(!teams.containsKey(teamName)) {
@@ -97,6 +97,7 @@ public class Section implements java.io.Serializable  {
 	public void addPlayer(Golfer gf , String teamName) {
 		if(teams.containsKey(teamName)) {
 			teams.get(teamName).addPlayer(gf);
+
 		}
 	}
 	

@@ -1,6 +1,8 @@
 package GolfDatabase.Golf;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -12,6 +14,8 @@ public class Golfer implements java.io.Serializable {
 	private SimpleIntegerProperty sc;
 	private String regFName, regTeam;
 	private String regLName;
+	private HashMap<Integer, Match> match;
+	private ArrayList<Integer> scoreList;
 	
 	public Golfer(String fName, String lName) {
 		this.fName = new SimpleStringProperty(fName);
@@ -19,6 +23,8 @@ public class Golfer implements java.io.Serializable {
 		this.golferScores = new ArrayList<Integer>();
 		this.regFName = fName;
 		this.regLName = lName;
+		match = new HashMap<>();
+		scoreList = new ArrayList();
 	}
 	
 	public void addScore(String scoreToAdd) {
@@ -39,10 +45,35 @@ public class Golfer implements java.io.Serializable {
 	public void setTeam(String tema) {
 		this.regTeam = tema;
 	}
+	
+	public void setHashMap(Match m) {
+		Random r = new Random();
+		Integer key = r.nextInt(9000) + 999;
+		for(Integer i:scoreList) {
+			if(key == scoreList.get(i)) {
+				setHashMap(m);
+			}
+		}
+		match.put(key, m);
+		scoreList.add(key);
+	}
+	
+	public void printMatches() {
+		for(Integer i:scoreList)
+			System.out.println(match.get(i));
+	}
+	
+	public int getNumOfScores() {
+		return scoreList.size();
+	}
+	
 	public void setTeamProp() {
 		this.team = new SimpleStringProperty(this.regTeam);
 	}
-	public String getTeam() {return regTeam;}
+	
+	public String getTeam() {
+		return regTeam;
+	}
 	
 	public SimpleStringProperty TeamProperty() {
 		return team;
@@ -66,10 +97,12 @@ public class Golfer implements java.io.Serializable {
 	
 	public String getFirstName() {
 	    return this.regFName;	
-	    }
-	 public String getLastName() {
+	}
+	
+	public String getLastName() {
 		 return this.regLName;
-	 }
+	}
+	
 	public String getFullName() {
 		return fName + " " + lName;
 	}

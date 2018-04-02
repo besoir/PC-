@@ -90,9 +90,9 @@
                 <mainClass>GolfDatabase.Golf.Main</mainClass>
                 <verbose>true</verbose>
         </configuration>
-</plugin>
+	  </plugin>
       <plugin>
-    		<groupId>org.apache.maven.plugins</groupId>
+    	<groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <version>3.2</version>
         <configuration>
@@ -100,6 +100,27 @@
           <target>1.8</target>
         </configuration>
       </plugin>
+      <plugin>
+       <groupId>org.apache.maven.plugins</groupId>
+       <artifactId>maven-clean-plugin</artifactId>
+       <version>3.0.0</version>
+       <configuration>
+        <excludeDefaultDirectories>true</excludeDefaultDirectories>
+          <filesets>
+            <fileset>
+                <directory>target</directory>
+                <includes>
+                    <include>**</include>
+                </includes>
+                <excludes>
+                    <exclude>scores.pdf</exclude>
+                    <exclude>abcd</exclude>
+                    <exclude>scores.txt</exclude>
+                </excludes>
+            </fileset>
+        </filesets>
+      </configuration>
+    </plugin>
     </plugins>
   </build>
 </project>
